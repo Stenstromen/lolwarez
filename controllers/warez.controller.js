@@ -49,7 +49,9 @@ function getFile(req, res) {
     newpath += fid;
 
     fs.rename(filepath, newpath, function () {
-      enc(fid, newpath, origFilename, getKey());
+      const key = getKey();
+      enc(fid, newpath, origFilename, key);
+      res.end(fid + "-" + key.toString("hex"));
     });
   });
 }

@@ -9,7 +9,8 @@ function decFile(id, key) {
     const decipher = crypto.createDecipher("aes-256-cbc", key);
     const fdecipher = crypto.createDecipher("aes-256-cbc", key);
     const tmpFile = __dirname + "/" + filez;
-    const cryptFile = __dirname + "/" + filez + id + "-" + key;
+    //const cryptFile = __dirname + "/" + filez + id + "-" + key;
+    const cryptFile = __dirname + "/" + filez + id;
 
     const foundFilename = model.fileNames.find((nm) => nm.id === id);
 
