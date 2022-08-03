@@ -1,25 +1,37 @@
-const crypto = require('crypto');
-const fs = require('fs');
-const filez = "../public/filez"
-const tmp = "../public/filez/tmp"
+const crypto = require("crypto");
+const fs = require("fs");
+const { resolve } = require("path");
+const filez = "../filez/";
+const model = require("../models/warez.model");
 
-/*var password = '1234';
-var decipher = crypto.createDecipher('aes-256-cbc', password);
+function decFile(id, key) {
+  return new Promise((resolve, reject) => {
+    const decipher = crypto.createDecipher("aes-256-cbc", key);
+    const fdecipher = crypto.createDecipher("aes-256-cbc", key);
+    const tmpFile = __dirname + "/" + filez;
+    const cryptFile = __dirname + "/" + filez + id + "-" + key;
 
-var input = fs.createReadStream('secret.enc');
-var output = fs.createWriteStream('secret.txt');
+    const foundFilename = model.fileNames.find((nm) => nm.id === id);
 
-input.pipe(decipher).pipe(output);*/
+    const decrpytedFilename = Buffer.concat([
+      decipher.update(Buffer.from(foundFilename.fileName, "hex")),
+      decipher.final(),
+    ]);
 
-function dec(id, file, key) {
-    const decipher = crypto.createCipher("aes-256-cbc", key);
-    const tmpFile = tmp + "/" + file + ".decrypted";
-    const cryptFile = filez + "/" + id + "-" + key;
-    
     const input = fs.createReadStream(cryptFile);
-    const output = fs.createWriteStream(tmpFile);
+    const output = fs.createWriteStream(tmpFile + decrpytedFilename);
 
-    input.pipe(decipher).pipe(output);
+    input.pipe(fdecipher).pipe(output);
+
+    setTimeout(() => {
+      return resolve(tmpFile + decrpytedFilename);
+    }, 200);
+  });
+}
+
+async function dec(id, key) {
+  console.log("Running decrypt");
+  return await decFile(id, key);
 }
 
 module.exports = dec;

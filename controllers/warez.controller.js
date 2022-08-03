@@ -1,9 +1,61 @@
-
+const path = require("path");
+const fs = require("fs");
+const formidable = require("formidable");
+const enc = require("../crypto/enc.crypto");
+const dec = require("../crypto/dec.crypto");
+const fileId = require("../uniqueid/fid.uniqueid");
+const getKey = require("../uniqueid/key.uniqueid");
+const tmp = "../filez/tmp/";
 
 function sendIndex(req, res) {
-    res.render("index.ejs")
+  res.render("index.ejs");
+}
+
+async function sendFile(req, res) {
+  const request = req.params.id.split("-");
+  const fileId = request[0];
+  const key = request[1];
+
+  if (fileId === "favicon.ico" || undefined) {
+    return;
+  } else {
+    const decryptedFile = await dec(fileId, key);
+    console.log(decryptedFile);
+    const fileToSend = path.resolve(decryptedFile);
+    res.download(fileToSend);
+
+    setTimeout(() => {
+      fs.unlink(fileToSend, function (err) {
+        if (err) throw err;
+        console.log("File deleted!");
+      });
+    }, 2000);
+  }
+}
+
+function getFile(req, res) {
+  let form = new formidable.IncomingForm();
+  const fid = fileId();
+
+  form.parse(req, function (error, fileds, file) {
+    if (error) {
+      console.log(error);
+    }
+
+    const origFilename = file.fileupload.originalFilename;
+
+    let filepath = file.fileupload.filepath;
+    let newpath = __dirname + "/" + tmp;
+    newpath += fid;
+
+    fs.rename(filepath, newpath, function () {
+      enc(fid, newpath, origFilename, getKey());
+    });
+  });
 }
 
 module.exports = {
-    sendIndex
-}
+  sendIndex,
+  sendFile,
+  getFile,
+};

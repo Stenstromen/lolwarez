@@ -1,28 +1,31 @@
 const crypto = require('crypto');
 const fs = require('fs');
-const filez = "../public/filez"
-const tmp = "../public/filez/tmp"
+const filez = "../filez/"
+const model = require("../models/warez.model")
 
-/*var password = 'abcdefg';
-var inputFile = './test.txt';
-var outputFile = './test-encrypted.txt';
+function enc(id, filePath, fileName, key) {
+    const cipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
+    const fcipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
+    const tmpFile = filePath;
+    const cryptFile = __dirname + "/" + filez + id + "-" + key.toString("hex");
+    const encfileName = Buffer.concat([cipher.update(fileName), cipher.final()]).toString("hex");
+    const fileInfo = {
+        id: id,
+        fileName: encfileName
+    };
 
-var cipher = crypto.createCipher('aes-256-cbc', password);
-
-var input = fs.createReadStream(inputFile);
-var output = fs.createWriteStream(outputFile);
-
-input.pipe(cipher).pipe(output);*/
-
-function enc(id, file, key) {
-    const cipher = crypto.createCipher("aes-256-cbc", key);
-    const tmpFile = tmp + "/" + file;
-    const cryptFile = filez + "/" + id + "-" + key;
-    
     const input = fs.createReadStream(tmpFile);
     const output = fs.createWriteStream(cryptFile);
 
-    input.pipe(cipher).pipe(output);
+    model.fileNames.push(fileInfo);
+    console.log(model.fileNames)
+
+    input.pipe(fcipher).pipe(output);
+
+    fs.unlink(filePath, function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
+    });
 }
 
 module.exports = enc;

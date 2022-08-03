@@ -1,13 +1,7 @@
-const crypto = require('crypto');
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const crypto = require("crypto");
 
 function getKey() {
-    return crypto.randomBytes(32);
-}
-
-function getIv() {
-    return crypto.randomBytes(16);
+  return crypto.randomBytes(32);
 }
 
 module.exports = getKey;
