@@ -1,17 +1,19 @@
 <div class="main" id="main">
+  <h2>😸 I Can Haz Filez? 🍔</h2>
   <input id="fileupload" type="file" name="fileupload" />
   <br />
   <button id="upload-button" onclick="uploadFile()">Upload</button>
 </div>
 
 <div class="wait" id="wait">
-
+  <img src="/static/loading.gif" />
 </div>
 
 <div class="complete" id="complete">
   <h1>Upload successful</h1>
-  <br/>
-  <p id="url"></p>
+  <br />
+  <!--<p id="url"></p>-->
+  <textarea id="url"></textarea>
 </div>
 <script>
   async function uploadFile() {
@@ -21,12 +23,14 @@
       method: "POST",
       body: formData,
     })
-      .then(document.querySelector("#wait"))
+      .then(document.querySelector("#wait").style.display = "block")
       .then((response) => response.text())
       .then((data) => {
+        document.querySelector("#wait").style.display = "none";
         document.querySelector("#main").style.display = "none";
         document.querySelector("#complete").style.display = "block";
-        document.querySelector("#url").textContent = "https://warez.lolcat.se/" + data
+        document.querySelector("#url").textContent =
+          "https://warez.lolcat.se/" + data;
       });
   }
 </script>

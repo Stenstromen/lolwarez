@@ -1,11 +1,20 @@
 body {
-    background-color: green;
+  background-color: green;
 }
 
 .wait {
-    display: none;
+  display: none;
 }
 
 .complete {
-    display: none;
+  display: none;
+}
+
+/* iPhone Portrait */
+@media screen and (min-width: 390px) {
+  .main {
+    display: grid;
+    width: 375px;
+    grid-template-rows: 60px 100px 200px;
+  }
 }
