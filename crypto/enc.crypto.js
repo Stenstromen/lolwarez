@@ -7,22 +7,16 @@ function enc(id, filePath, fileName, key) {
   const cipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
   const fcipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
   const tmpFile = filePath;
-  //const cryptFile = __dirname + "/" + filez + id + "-" + key.toString("hex");
   const cryptFile = __dirname + "/" + filez + id;
   const encfileName = Buffer.concat([
     cipher.update(fileName),
     cipher.final(),
   ]).toString("hex");
-  const fileInfo = {
-    id: id,
-    fileName: encfileName,
-  };
 
   const input = fs.createReadStream(tmpFile);
   const output = fs.createWriteStream(cryptFile);
 
-  model.fileNames.push(fileInfo);
-  console.log(model.fileNames);
+  model.addFile(id, encfileName);
 
   input.pipe(fcipher).pipe(output);
 

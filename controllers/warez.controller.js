@@ -20,7 +20,6 @@ async function sendFile(req, res) {
     return;
   } else {
     const decryptedFile = await dec(fileId, key);
-    console.log(decryptedFile);
     const fileToSend = path.resolve(decryptedFile);
     res.download(fileToSend);
 

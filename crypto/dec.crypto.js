@@ -1,21 +1,18 @@
 const crypto = require("crypto");
 const fs = require("fs");
-const { resolve } = require("path");
 const filez = "../filez/";
 const model = require("../models/warez.model");
 
-function decFile(id, key) {
+async function decFile(id, key) {
+  const foundFilename = await model.getFileName(id);
   return new Promise((resolve, reject) => {
     const decipher = crypto.createDecipher("aes-256-cbc", key);
     const fdecipher = crypto.createDecipher("aes-256-cbc", key);
     const tmpFile = __dirname + "/" + filez;
-    //const cryptFile = __dirname + "/" + filez + id + "-" + key;
     const cryptFile = __dirname + "/" + filez + id;
 
-    const foundFilename = model.fileNames.find((nm) => nm.id === id);
-
     const decrpytedFilename = Buffer.concat([
-      decipher.update(Buffer.from(foundFilename.fileName, "hex")),
+      decipher.update(Buffer.from(foundFilename.filename, "hex")),
       decipher.final(),
     ]);
 
