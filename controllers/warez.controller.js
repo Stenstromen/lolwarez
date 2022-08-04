@@ -6,6 +6,7 @@ const dec = require("../crypto/dec.crypto");
 const fileId = require("../uniqueid/fid.uniqueid");
 const getKey = require("../uniqueid/key.uniqueid");
 const tmp = "../filez/tmp/";
+const mkdirp = require("mkdirp")
 
 function sendIndex(req, res) {
   res.render("index.ejs");
