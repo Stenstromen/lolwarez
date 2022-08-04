@@ -23,7 +23,7 @@ async function decFile(id, key) {
 
     setTimeout(() => {
       return resolve(tmpFile + decrpytedFilename);
-    }, 200);
+    }, 500);
   });
 }
 

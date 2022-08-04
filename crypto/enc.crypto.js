@@ -25,7 +25,7 @@ function enc(id, filePath, fileName, key) {
       if (err) throw err;
       console.log("File deleted!");
     });
-  }, 200);
+  }, 500);
 }
 
 module.exports = enc;
