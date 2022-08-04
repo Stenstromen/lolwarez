@@ -1,8 +1,11 @@
 <div class="main" id="main">
   <h2>😸 I Can Haz Filez? 🍔</h2>
+  <h1>🗂</h1>
   <input id="fileupload" type="file" name="fileupload" />
-  <br />
-  <button id="upload-button" onclick="uploadFile()">Upload</button>
+  <!--<br />-->
+  <div class="upload-area">
+    <button id="upload-button" onclick="uploadFile()">Upload File 💽</button>
+  </div>
 </div>
 
 <div class="wait" id="wait">
@@ -10,12 +13,18 @@
 </div>
 
 <div class="complete" id="complete">
-  <h1>Upload successful</h1>
-  <br />
-  <!--<p id="url"></p>-->
-  <textarea id="url"></textarea>
+  <h2>😻 Upload Successful 🍔</h2>
+  <h1>🗂</h1>
+  <textarea id="url" readonly></textarea>
+  <div class="sharebuttons">
+    <button id="button" onclick="myFunction('clip')">Copy URL 💾</button>
+    <button id="share" onclick="myFunction('share')">Share URL 💌</button>
+  </div>
 </div>
+
 <script>
+  let shareUrl;
+
   async function uploadFile() {
     let formData = new FormData();
     formData.append("fileupload", fileupload.files[0]);
@@ -23,14 +32,58 @@
       method: "POST",
       body: formData,
     })
-      .then(document.querySelector("#wait").style.display = "block")
+      .then((document.querySelector("#wait").style.display = "block"))
       .then((response) => response.text())
       .then((data) => {
         document.querySelector("#wait").style.display = "none";
         document.querySelector("#main").style.display = "none";
-        document.querySelector("#complete").style.display = "block";
+        document.querySelector("#complete").style.display = "grid";
         document.querySelector("#url").textContent =
           "https://warez.lolcat.se/" + data;
+        shareUrl = "https://warez.lolcat.se/" + data;
       });
+  }
+
+  const shareData = {
+    title: "I Can Haz Filez? 🗂",
+    text: "I Can Haz Filez? 🗂",
+    url: shareUrl,
+  };
+
+  const btn = document.getElementById("share");
+  const resultPara = document.getElementById("url");
+
+  btn.addEventListener("click", async () => {
+    try {
+      await navigator.share(shareData);
+      resultPara.textContent = "Burner Link shared successfully";
+    } catch (err) {
+      console.log("Error: " + err)
+    }
+  });
+  function myFunction(link) {
+    if (link === "clip") {
+      const copyText = document.getElementById("url");
+
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+
+      navigator.clipboard.writeText(copyText.value);
+
+      document.getElementById("button").textContent =
+        "Copy URL ✅";
+
+      setTimeout(function () {
+        document.getElementById("button").textContent =
+          "Copy URL 💾";
+      }, 2000);
+    } else if (link === "share") {
+      document.getElementById("share").textContent = "Share URL ✅";
+
+      setTimeout(function () {
+        document.getElementById("share").textContent =
+          "Share URL 💌";
+      }, 1000);
+    }
   }
 </script>

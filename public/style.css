@@ -1,5 +1,5 @@
 body {
-  background-color: green;
+  background-color: #2c2c2c;
 }
 
 .wait {
@@ -15,6 +15,280 @@ body {
   .main {
     display: grid;
     width: 375px;
-    grid-template-rows: 60px 100px 200px;
+    grid-template-rows: 60px 200px 150px 415px; /* Viewport height 844px */
+    background-color: #44b0d6;
   }
+
+  .main > h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    font-size: 200px;
+  }
+
+  #fileupload {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    text-align: center;
+    font-size: large;
+    margin-top: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: solid 1px #2c2c2c;
+    border-radius: 25px;
+  }
+
+  .upload-area {
+    display: flex;
+    justify-content: center;
+  }
+
+  input[type="file"] {
+    color: darkblue;
+  }
+
+  .upload-area > button {
+    font-size: xx-large;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    align-self: flex-end;
+    margin-bottom: 40px;
+  }
+
+  .complete {
+    width: 375px;
+    grid-template-rows: 60px 200px 150px 415px; /* Viewport height 844px */
+    background-color: #44b0d6;
+  }
+
+  .complete > h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  textarea {
+    width: 370px;
+    border: none;
+    height: 25px;
+    font-size: x-large;
+    white-space: nowrap;
+    margin-top: 120px;
+    resize: none;
+    border-radius: 10px;
+    overflow:hidden;
+  }
+
+  .sharebuttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .sharebuttons > * {
+    font-size: x-large;
+    align-self: flex-end;
+    margin-bottom: 45px;
+    border: none;
+    border-radius: 15px;
+    height: 50px;
+  }
+}
+
+/* iPad Portrait */
+@media screen and (min-width: 834px) {
+    .main {
+        display: grid;
+        width: 820px;
+        grid-template-rows: 60px 200px 150px 765px; /* Viewport height 1194px */
+        background-color: #44b0d6;
+      }
+    
+      .main > h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      h1 {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        text-align: center;
+        font-size: 300px;
+      }
+    
+      #fileupload {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+        text-align: center;
+        font-size: x-large;
+        margin-top: 300px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: solid 1px #2c2c2c;
+        border-radius: 25px;
+      }
+    
+      .upload-area {
+        display: flex;
+        justify-content: center;
+      }
+    
+      input[type="file"] {
+        color: darkblue;
+      }
+    
+      .upload-area > button {
+        font-size: xx-large;
+        height: 50px;
+        border-radius: 15px;
+        border: none;
+        align-self: flex-end;
+        margin-bottom: 40px;
+      }
+
+      .complete {
+        width: 820px;
+        grid-template-rows: 60px 200px 150px 765px; /* Viewport height 1194px */
+        background-color: #44b0d6;
+      }
+    
+      .complete > h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      textarea {
+        width: 810px;
+        border: none;
+        height: 25px;
+        font-size: x-large;
+        white-space: nowrap;
+        margin-top: 250px;
+        resize: none;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-left: 2px;
+      }
+    
+      .sharebuttons {
+        display: flex;
+        justify-content: space-evenly;
+      }
+    
+      .sharebuttons > * {
+        font-size: xx-large;
+        align-self: flex-end;
+        margin-bottom: 45px;
+        border: none;
+        border-radius: 15px;
+        height: 50px;
+      }
+
+      @media screen and (min-width: 1200px) {
+        .main {
+            display: grid;
+            width: 100%;
+            grid-template-rows: 60px 200px 150px 765px; /* Viewport height 1194px */
+            background-color: #44b0d6;
+          }
+        
+          .main > h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+          }
+        
+          h1 {
+            display: flex;
+            align-items: center;
+            justify-self: center;
+            text-align: center;
+            font-size: 300px;
+          }
+        
+          #fileupload {
+            position: relative;
+            text-align: center;
+            font-size: x-large;
+            margin: auto;
+            top: 100%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: solid 1px #2c2c2c;
+            border-radius: 25px;
+            width: 50%;
+          }
+        
+          .upload-area {
+            display: flex;
+            justify-content: center;
+          }
+        
+          input[type="file"] {
+            color: darkblue;
+          }
+        
+          .upload-area > button {
+            font-size: xx-large;
+            height: 50px;
+            border-radius: 15px;
+            border: none;
+            align-self: flex-end;
+            margin-bottom: 200px;
+          }
+
+          .complete {
+            width: 100%;
+            grid-template-rows: 60px 200px 150px 765px; /* Viewport height 1194px */
+            background-color: #44b0d6;
+          }
+        
+          .complete > h2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        
+          textarea {
+            width: 50%;
+            border: none;
+            height: 25px;
+            font-size: x-large;
+            white-space: nowrap;
+            resize: none;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: auto;
+            margin-top: 250px;
+          }
+        
+          .sharebuttons {
+            display: flex;
+            justify-content: space-evenly;
+          }
+        
+          .sharebuttons > * {
+            font-size: xx-large;
+            align-self: flex-end;
+            margin-bottom: 200px;
+            border: none;
+            border-radius: 15px;
+            height: 50px;
+          }
+      }
 }
