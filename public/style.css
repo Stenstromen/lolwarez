@@ -14,8 +14,8 @@ body {
 @media screen and (min-width: 390px) {
   .main {
     display: grid;
-    width: 375px;
-    grid-template-rows: 60px 200px 150px 415px; /* Viewport height 844px */
+    width: 400px;
+    grid-template-rows: 60px 200px 150px 310px; /* Viewport height 844px */
     background-color: #44b0d6;
   }
 
@@ -66,8 +66,8 @@ body {
   }
 
   .complete {
-    width: 375px;
-    grid-template-rows: 60px 200px 150px 415px; /* Viewport height 844px */
+    width: 400px;
+    grid-template-rows: 60px 200px 150px 310px; /* Viewport height 844px */
     background-color: #44b0d6;
   }
 
@@ -78,7 +78,7 @@ body {
   }
 
   textarea {
-    width: 370px;
+    width: 390px;
     border: none;
     height: 25px;
     font-size: x-large;

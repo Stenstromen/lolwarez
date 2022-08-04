@@ -23,7 +23,7 @@
 </div>
 
 <script>
-  let shareUrl;
+  //let shareUrl;
 
   async function uploadFile() {
     let formData = new FormData();
@@ -40,23 +40,32 @@
         document.querySelector("#complete").style.display = "grid";
         document.querySelector("#url").textContent =
           "https://warez.lolcat.se/" + data;
-        shareUrl = "https://warez.lolcat.se/" + data;
+        //shareUrl = "https://warez.lolcat.se/" + data;
       });
   }
 
+  const shareUrl = document.querySelector("#url")
   const shareData = {
     title: "I Can Haz Filez? 🗂",
     text: "I Can Haz Filez? 🗂",
-    url: shareUrl,
+    url: shareUrl.value,
   };
 
   const btn = document.getElementById("share");
   const resultPara = document.getElementById("url");
 
   btn.addEventListener("click", async () => {
+  const shareUrl = document.getElementById("url")
+  shareUrl.select();
+  shareUrl.setSelectionRange(0, 99999);
+  const shareData = {
+    title: "I Can Haz Filez? 🗂",
+    text: "I Can Haz Filez? 🗂",
+    url: shareUrl.value,
+  };
     try {
       await navigator.share(shareData);
-      resultPara.textContent = "Burner Link shared successfully";
+      resultPara.textContent = "Shared successfully";
     } catch (err) {
       console.log("Error: " + err)
     }
