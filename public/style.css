@@ -14,8 +14,8 @@ body {
 @media screen and (min-width: 390px) {
   .main {
     display: grid;
-    width: 400px;
-    grid-template-rows: 60px 200px 150px 310px; /* Viewport height 844px */
+    width: 420px;
+    grid-template-rows: 60px 200px 150px 300px; /* Viewport height 844px */
     background-color: #44b0d6;
   }
 
@@ -35,8 +35,6 @@ body {
 
   #fileupload {
     display: flex;
-    align-items: center;
-    align-content: center;
     align-self: center;
     text-align: center;
     font-size: large;
@@ -62,7 +60,7 @@ body {
     border-radius: 15px;
     border: none;
     align-self: flex-end;
-    margin-bottom: 40px;
+    margin-bottom: 90px;
   }
 
   .complete {
@@ -249,7 +247,7 @@ body {
             border-radius: 15px;
             border: none;
             align-self: flex-end;
-            margin-bottom: 200px;
+            margin-bottom: 400px;
           }
 
           .complete {
