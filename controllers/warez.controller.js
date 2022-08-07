@@ -5,8 +5,7 @@ const enc = require("../crypto/enc.crypto");
 const dec = require("../crypto/dec.crypto");
 const fileId = require("../uniqueid/fid.uniqueid");
 const getKey = require("../uniqueid/key.uniqueid");
-const tmp = "../filez/";
-const mkdirp = require("mkdirp");
+const tmp = "/usr/src/app/filez/"
 
 function sendIndex(req, res) {
   res.render("index.ejs");
@@ -45,6 +44,7 @@ function getFile(req, res) {
   let form = new formidable.IncomingForm();
   const fid = fileId();
 
+  form.uploadDir = tmp;
   form.parse(req, function (error, fileds, file) {
     if (error) {
       console.log(error);
@@ -53,7 +53,7 @@ function getFile(req, res) {
     const origFilename = file.fileupload.originalFilename;
 
     let filepath = file.fileupload.filepath;
-    let newpath = __dirname + "/" + tmp;
+    let newpath = tmp;
     newpath += fid + ".orig";
 
     fs.rename(filepath, newpath, function () {

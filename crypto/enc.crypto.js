@@ -1,13 +1,13 @@
 const crypto = require("crypto");
 const fs = require("fs");
-const filez = "../filez/";
+const filez = "/usr/src/app/filez/"
 const model = require("../models/warez.model");
 
 function enc(id, filePath, fileName, key) {
   const cipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
   const fcipher = crypto.createCipher("aes-256-cbc", key.toString("hex"));
   const tmpFile = filePath;
-  const cryptFile = __dirname + "/" + filez + id;
+  const cryptFile = filez + id;
   const encfileName = Buffer.concat([
     cipher.update(fileName),
     cipher.final(),

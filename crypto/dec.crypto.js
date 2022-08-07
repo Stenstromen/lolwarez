@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const fs = require("fs");
-const filez = "../filez/";
+const filez = "/usr/src/app/filez/"
 const model = require("../models/warez.model");
 
 async function decFile(id, key) {
@@ -8,8 +8,8 @@ async function decFile(id, key) {
   return new Promise((resolve, reject) => {
     const decipher = crypto.createDecipher("aes-256-cbc", key);
     const fdecipher = crypto.createDecipher("aes-256-cbc", key);
-    const tmpFile = __dirname + "/" + filez;
-    const cryptFile = __dirname + "/" + filez + id;
+    const tmpFile = filez;
+    const cryptFile = filez + id;
 
     const decrpytedFilename = Buffer.concat([
       decipher.update(Buffer.from(foundFilename.filename, "hex")),
