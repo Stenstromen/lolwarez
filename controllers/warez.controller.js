@@ -5,7 +5,7 @@ const enc = require("../crypto/enc.crypto");
 const dec = require("../crypto/dec.crypto");
 const fileId = require("../uniqueid/fid.uniqueid");
 const getKey = require("../uniqueid/key.uniqueid");
-const tmp = "../filez/tmp/";
+const tmp = "../filez/";
 const mkdirp = require("mkdirp");
 
 function sendIndex(req, res) {
@@ -54,7 +54,7 @@ function getFile(req, res) {
 
     let filepath = file.fileupload.filepath;
     let newpath = __dirname + "/" + tmp;
-    newpath += fid;
+    newpath += fid + ".orig";
 
     fs.rename(filepath, newpath, function () {
       const key = getKey();
