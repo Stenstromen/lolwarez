@@ -14,8 +14,8 @@ body {
 @media screen and (min-width: 390px) {
   .main {
     display: grid;
-    width: 420px;
-    grid-template-rows: 60px 200px 150px 300px; /* Viewport height 844px */
+    width: 400px;
+    grid-template-rows: 60px 200px 150px 290px; /* Viewport height 844px */
     background-color: #44b0d6;
   }
 
@@ -43,6 +43,7 @@ body {
     padding-bottom: 5px;
     border: solid 1px #2c2c2c;
     border-radius: 25px;
+    width: 99%;
   }
 
   .upload-area {
@@ -64,8 +65,8 @@ body {
   }
 
   .complete {
-    width: 400px;
-    grid-template-rows: 60px 200px 150px 310px; /* Viewport height 844px */
+    width: 410px;
+    grid-template-rows: 60px 200px 150px 290px; /* Viewport height 844px */
     background-color: #44b0d6;
   }
 
@@ -76,7 +77,7 @@ body {
   }
 
   textarea {
-    width: 390px;
+    width: 385px;
     border: none;
     height: 25px;
     font-size: x-large;
