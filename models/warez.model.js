@@ -1,39 +1,26 @@
-const sqlDbFile = "./filez/filezDb.sqlite"
-const sqlite3 = require("sqlite3").verbose();
-
-const filezDb = new sqlite3.Database(sqlDbFile, (error) => {
-    if (error) {
-        console.error(error.message);
-        throw error;
-    }
-
-    console.log("Connected to DB");
-
-    const statement = `CREATE TABLE filez (id TEXT, filename TEXT)`
-
-    filezDb.run(statement, (error) => {
-        if (error) {
-            console.log('Table "Filez already exists');
-            return;
-        }
-    })
-})
+const con = require("../mysql/db.mysql");
 
 function addFile(id, name) {
-    let insert = "INSERT INTO filez (id, filename) VALUES (?,?)";
-    filezDb.run(insert, [`${id}`, `${name}`]);
+    let sql = `INSERT INTO filez (fileid, filename) VALUES ("${id}", "${name}")`
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(`Filename ${id} inserted into the database`);
+    });
 }
 
-function getFileName(id) {
-    let sql = "SELECT filename FROM filez WHERE id = ?";
+async function getFileName(id) {
+    let sql = `SELECT filename FROM filez WHERE fileid = "${id}"`
 
     return new Promise((resolve, reject) => {
-        filezDb.get(sql, id, (error, rows) => {
-            if (error) {
-                console.error(error.message);
-                reject(error);
+        con.query(sql, function (err, result) {
+            if (err) {
+                console.error(err.message);
+                reject(err);
             }
-            resolve(rows);
+            Object.keys(result).forEach(function (key) {
+                let row = result[key];
+                resolve(row)
+            })
         });
     });
 }
